@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Django Project</title>
+</head>
+<body>
+    <header>
+        {% if user.is_authenticated %}
+            <p>Привет, {{ user.username }}! 
+                <form action="{% url 'logout' %}" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit">Выйти</button>
+                </form>
+            </p>
+        {% else %}
+            <p><a href="{% url 'login' %}">Войти</a> | <a href="{% url 'signup' %}">Зарегистрироваться</a></p>
+        {% endif %}
+        <a href="{% url 'post_list' %}">На главную</a>
+    </header>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+</body>
+</html>

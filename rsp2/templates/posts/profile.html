@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Профиль пользователя {{ profile_user.username }}</h2>
+<p>Всего лайков: {{ total_likes }}</p>
+
+<h3>Посты</h3>
+{% for post in posts %}
+    <div>
+        <h4>{{ post.title }}</h4>
+        <p>{{ post.content }}</p>
+        <p>Лайков: {{ post.like_set.count }}</p>
+    </div>
+{% endfor %}
+{% endblock %}
